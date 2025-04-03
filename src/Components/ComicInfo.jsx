@@ -31,16 +31,20 @@ const ComicInfo = ({ image, title, id }) => {
             {comic ? ( // rendering only if API call actually returned us data
                 <li className="main-list" key={comic.id}>
                     <img 
-                    className='icons' 
-                    src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`} 
-                    alt={`Thumbnail for ${comic.title} comic.`} 
+                        className='icons' 
+                        src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`} 
+                        alt={`Thumbnail for ${comic.title} comic.`} 
                     />
-                    {comic.title} <span className='tab'></span>
-                    {comic.prices.length > 0
-                    ? `$${comic.prices[0].price}` : "Price not available"}
+                    <span className='comic-title'>{comic.title}</span>
+                    <span className='tab'></span>
+                    <span className='comic-price'>
+                        {comic.prices.length > 0
+                            ? `$${comic.prices[0].price}` 
+                            : "Price not available"}
+                        </span>
                 </li>
             ) : (
-                <p>Loading comic details</p>
+                <span>Loading comic details...</span>
             )
         }
         </div>
