@@ -48,7 +48,9 @@
 .icons {
   width: 100px;
   height: auto;
-  display: block;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
   margin: 0 auto;
 }
 
@@ -74,6 +76,19 @@ li.main-list {
   text-align: center;
   background: black;
   color: white;
+}
+
+.comic-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #fff;
+  margin-right: 10px;
+}
+
+.comic-price {
+  font-size: 1rem;
+  color: #f39c12;
+  font-weight: normal;
 }
 
 .tab {
