@@ -4,6 +4,7 @@ import './App.css'
 import md5 from 'md5'
 import ComicInfo from './Components/ComicInfo';
 import SideNav from './Components/SideNav';
+import getHandbook from './Components/MarvelHandbooks';
 
 const publicKey = "0af833b07e711564e2b1c18e67b5526a";
 const privateKey = "27af96fb316dfdc5d0fb1971244fa64e3290088d";
