@@ -4,7 +4,6 @@ import './App.css'
 import md5 from 'md5'
 import ComicInfo from './Components/ComicInfo';
 import SideNav from './Components/SideNav';
-import getHandbook from './Components/MarvelHandbooks';
 
 const publicKey = "0af833b07e711564e2b1c18e67b5526a";
 const privateKey = "27af96fb316dfdc5d0fb1971244fa64e3290088d";
@@ -70,15 +69,6 @@ function App() {
     fetchAllMarvelData().catch(console.error);
   }, [])
 
-  useEffect(() => {
-    if (categoryFilter === "handbook") {
-      const handbooks = comics.filter((comic) => comic.title.toLowerCase().includes("handbook"));
-      setFilteredResults(handbooks)
-    } else {
-      setFilteredResults(comics)
-    }
-  }, [categoryFilter, comics])
-
   console.log(comics);
 
   return (
@@ -89,7 +79,7 @@ function App() {
       <input
         type="text"
         placeholder="Search comics..."
-        onChange={(e) => searchItems(e.target.value)}
+        onChange={(inputString) => searchItems(inputString.target.value)}
       />
 
       <select onChange={handleCategoryChange}>
@@ -105,10 +95,10 @@ function App() {
             {filteredResults.length > 0 ? (
               filteredResults.map((comic) => (
                 <li key={comic.id}>
-                  <ComicInfo
-                    image={`${comic.thumbnail.path}.${comic.thumbnail.extension}`}
-                    title={comic.title}
-                    id={comic.id}
+                  <img
+                    src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`}
+                    alt={`Thumbnail for ${comic.title}`}
+                    style={{ width: "100px", height: "auto" }}
                   />
                   {comic.title} <span className="tab"></span>
                   {comic.prices.length > 0
@@ -132,10 +122,10 @@ function App() {
                 .filter((comic) => comic.format === "Handbook")
                 .map((comic) => (
                   <li key={comic.id}>
-                    <ComicInfo
-                    image={`${comic.thumbnail.path}.${comic.thumbnail.extension}`}
-                    title={comic.title}
-                    id={comic.id}
+                    <img
+                      src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`}
+                      alt={`Thumbnail for ${comic.title}`}
+                      style={{ width: "100px", height: "auto" }}
                     />
                     {comic.title} <span className="tab"></span>
                     {comic.prices.length > 0
